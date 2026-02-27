@@ -170,7 +170,7 @@ export const DashboardChartSection: React.FC<DashboardChartSectionProps> = ({
                             <MobileProjectionChart inputs={inputs} result={result} mcResult={mcResult} showSumAssured={showSumAssured} setShowSumAssured={setShowSumAssured} showActualSavings={showActualSavings} setShowActualSavings={setShowActualSavings} insuranceChartData={insuranceChartData} chartTickInterval={chartTickInterval} showMC={showMC} setShowMC={setShowMC} initialOrientation="vertical" hideOrientationToggle={false} />
                         </div>
                         <div className={`w-full h-full ${viewMode === 'bar' ? 'hidden xl:block print:block' : 'block'}`}>
-                            <ProjectionChart inputs={inputs} result={result} mcResult={showMC ? mcResult : null} showSumAssured={showSumAssured} showActualSavings={showActualSavings} insuranceChartData={insuranceChartData} chartTickInterval={chartTickInterval} viewMode={viewMode} />
+                            <ProjectionChart inputs={inputs} result={result} mcResult={mcResult} showSumAssured={showSumAssured} showActualSavings={showActualSavings} insuranceChartData={insuranceChartData} chartTickInterval={chartTickInterval} viewMode={viewMode} showMC={showMC} setShowMC={setShowMC} />
                         </div>
                     </div>
                     <div className="block md:hidden print:hidden print-mobile-only w-full h-full">

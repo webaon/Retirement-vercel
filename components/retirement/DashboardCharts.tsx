@@ -396,6 +396,8 @@ export interface ProjectionChartProps {
     insuranceChartData: InsuranceChartData | null; // ข้อมูลกราฟประกัน
     chartTickInterval: number; // ระยะห่างช่วงอายุบนแกน X
     viewMode?: 'line' | 'bar'; // โหมดการแสดงผล (เส้นกราฟ / แท่งกราฟ)
+    showMC?: boolean; // แสดง Monte Carlo หรือไม่
+    setShowMC?: (v: boolean) => void; // ฟังก์ชันเปิด/ปิด Monte Carlo
 }
 
 
@@ -407,7 +409,9 @@ export const ProjectionChart: React.FC<ProjectionChartProps> = ({
     showActualSavings,
     insuranceChartData,
     chartTickInterval,
-    viewMode = 'line'
+    viewMode = 'line',
+    showMC = true,
+    setShowMC
 }) => {
     // Mobile & Tablet Detection State
     const [isMobile, setIsMobile] = React.useState(false);
@@ -529,8 +533,11 @@ export const ProjectionChart: React.FC<ProjectionChartProps> = ({
             data: {
                 labels: finalLabels,
                 datasets: [
-                    { label: "P5", data: filteredP5, borderColor: "transparent", backgroundColor: "rgba(16, 185, 129, 0.1)", pointRadius: 0, fill: "+1", tension: 0.4, order: 5, hidden: isMobile, type: 'line' as const },
-                    { label: "P95", data: filteredP95, borderColor: "transparent", backgroundColor: "rgba(16, 185, 129, 0.1)", pointRadius: 0, fill: false, tension: 0.4, order: 6, hidden: isMobile, type: 'line' as const },
+                    // Monte Carlo P5/P95 - only included when showMC is true
+                    ...(showMC && mcResult ? [
+                        { label: "P5", data: filteredP5, borderColor: "transparent", backgroundColor: "rgba(16, 185, 129, 0.1)", pointRadius: 0, fill: "+1", tension: 0.4, order: 5, hidden: isMobile, type: 'line' as const },
+                        { label: "P95", data: filteredP95, borderColor: "transparent", backgroundColor: "rgba(16, 185, 129, 0.1)", pointRadius: 0, fill: false, tension: 0.4, order: 6, hidden: isMobile, type: 'line' as const },
+                    ] : []),
                     {
                         label: `เงินออม (${inputs.retireAge} ปี)`,
                         data: filteredActual,
@@ -651,7 +658,7 @@ export const ProjectionChart: React.FC<ProjectionChartProps> = ({
                         backgroundColor: "#2dd4bf",
                         pointRadius: 4,
                         order: 10,
-                        hidden: !mcResult, // Only show if MC is available
+                        hidden: !showMC || !mcResult, // Reflect current showMC state
                         type: 'line' as const
                     }
                 ],
@@ -697,6 +704,23 @@ export const ProjectionChart: React.FC<ProjectionChartProps> = ({
                                     item.text.includes("Monte Carlo")
                                 );
                             }
+                        },
+                        onClick: (e: any, legendItem: any, legend: any) => {
+                            // Custom onClick: if Monte Carlo legend is clicked, toggle showMC
+                            if (legendItem.text === 'Monte Carlo' && setShowMC) {
+                                setShowMC(!showMC);
+                                return;
+                            }
+                            // Default Chart.js behavior for other legend items
+                            const index = legendItem.datasetIndex;
+                            const ci = legend.chart;
+                            if (ci.isDatasetVisible(index)) {
+                                ci.hide(index);
+                                legendItem.hidden = true;
+                            } else {
+                                ci.show(index);
+                                legendItem.hidden = false;
+                            }
                         }
                     },
                     tooltip: {
@@ -735,7 +759,7 @@ export const ProjectionChart: React.FC<ProjectionChartProps> = ({
                 },
             },
         };
-    }, [inputs, result, mcResult, showSumAssured, showActualSavings, insuranceChartData, chartTickInterval, isMobile, viewMode]);
+    }, [inputs, result, mcResult, showSumAssured, showActualSavings, insuranceChartData, chartTickInterval, isMobile, viewMode, showMC]);
 
     return (
         <Chart
