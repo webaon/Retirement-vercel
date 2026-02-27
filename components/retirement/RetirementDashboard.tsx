@@ -98,6 +98,17 @@ export const RetirementDashboard = ({
     const [showMonteCarloDetails, setShowMonteCarloDetails] = React.useState(false);
     const [showMC, setShowMC] = React.useState(true);
 
+    // Lock body scroll when any modal is open
+    React.useEffect(() => {
+        const anyModalOpen = isSummaryOpen || showInsuranceTable || showProjectedModal || showTargetModal || showExpenseModal || showMonteCarloDetails;
+        if (anyModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => { document.body.style.overflow = ''; };
+    }, [isSummaryOpen, showInsuranceTable, showProjectedModal, showTargetModal, showExpenseModal, showMonteCarloDetails]);
+
     // Mobile Carousel
     const carouselRef = React.useRef<HTMLDivElement>(null);
     const [activeSlide, setActiveSlide] = React.useState(0);
