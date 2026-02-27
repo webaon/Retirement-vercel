@@ -23,7 +23,7 @@ export const DashboardHeroCard: React.FC<DashboardHeroCardProps> = ({
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-black/10 rounded-full blur-[80px] -ml-20 -mb-20 pointer-events-none"></div>
 
             {/* Content Container */}
-            <div className={`relative z-10 flex flex-col ${isSidebarOpen ? '2xl:flex-row' : 'xl:flex-row'} xl:items-center justify-between gap-6 lg:gap-10 h-full`}>
+            <div className={`relative z-10 flex flex-col ${isSidebarOpen ? '2xl:flex-row' : 'md:flex-row'} md:items-center justify-between gap-6 lg:gap-10 h-full`}>
                 {/* Left Side: Status & Message */}
                 <div className="flex-1 space-y-4 lg:space-y-6 flex flex-col justify-center">
                     <div className={`inline-flex items-center gap-2.5 px-3 py-1.5 lg:px-4 lg:py-2 rounded-full border backdrop-blur-md shadow-sm ${result.status === 'enough' ? 'bg-emerald-500/20 border-emerald-400/30 text-emerald-50' : 'bg-red-500/20 border-red-400/30 text-red-50'}`}>

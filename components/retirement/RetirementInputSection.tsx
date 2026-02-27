@@ -77,7 +77,7 @@ const PortalTooltip = ({ text, rect, onCheck, onLeave }: { text: string, rect: D
 
     return createPortal(
         <div
-            className={`fixed inset-0 z-[9999] pointer-events-none transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0'}`}
+            className={`fixed inset-0 z-9999 pointer-events-none transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0'}`}
         >
             <div
                 className="absolute transition-all duration-300 ease-out origin-bottom"
@@ -97,7 +97,7 @@ const PortalTooltip = ({ text, rect, onCheck, onLeave }: { text: string, rect: D
                     {text}
                     {/* Arrow (ลูกศรชี้) - Dynamically shifted */}
                     <div
-                        className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-8 border-transparent border-t-white/98 drop-shadow-sm transition-all duration-300"
+                        className="absolute top-full left-1/2 -translate-x-1/2 -mt-px border-8 border-transparent border-t-white/98 drop-shadow-sm transition-all duration-300"
                         style={{ marginLeft: coords.arrowOffset }}
                     ></div>
                 </div>
@@ -371,7 +371,7 @@ export const RetirementInputSection: React.FC<RetirementInputSectionProps> = ({
             onClick={onClick}
             className={`flex-1 flex items-center justify-center gap-2 cursor-pointer px-3 py-2 rounded-lg border transition-all duration-300 ${selected ? 'bg-blue-600 border-blue-600 shadow-sm shadow-blue-100' : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50'}`}
         >
-            <div className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${selected ? 'border-white' : 'border-slate-300'}`}>
+            <div className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center shrink-0 ${selected ? 'border-white' : 'border-slate-300'}`}>
                 {selected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
             </div>
             <span className={`text-xs font-bold leading-none ${selected ? 'text-white' : 'text-slate-500'}`}>{label}</span>
@@ -1208,7 +1208,7 @@ export const RetirementInputSection: React.FC<RetirementInputSectionProps> = ({
                         <Button
                             type="button"
                             onClick={handleCalculateCheck}
-                            className="w-full h-12 text-lg rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold shadow-lg shadow-blue-200 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                            className="w-full h-12 text-lg rounded-2xl bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold shadow-lg shadow-blue-200 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
                         >
                             <Calculator size={20} /> คำนวณและดูผลลัพธ์
                         </Button>
@@ -1219,7 +1219,7 @@ export const RetirementInputSection: React.FC<RetirementInputSectionProps> = ({
                 {!isEmbedded && (
                     <div className="pt-6 border-t border-slate-50 flex gap-4 relative z-10 items-center">
                         {step > 1 && (
-                            <Button type="button" onClick={prevStep} variant="ghost" className="h-14 w-14 rounded-full border border-slate-100 text-slate-400 hover:text-slate-600 hover:bg-slate-50 flex-shrink-0">
+                            <Button type="button" onClick={prevStep} variant="ghost" className="h-14 w-14 rounded-full border border-slate-100 text-slate-400 hover:text-slate-600 hover:bg-slate-50 shrink-0">
                                 <ArrowLeft size={20} />
                             </Button>
                         )}
@@ -1229,7 +1229,7 @@ export const RetirementInputSection: React.FC<RetirementInputSectionProps> = ({
                                 ถัดไป <ArrowRight size={20} />
                             </Button>
                         ) : (
-                            <Button type="button" onClick={handleCalculateCheck} className="flex-1 h-14 text-lg rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold shadow-xl shadow-blue-200 transition-all hover:translate-y-[-2px] flex items-center justify-center gap-2">
+                            <Button type="button" onClick={handleCalculateCheck} className="flex-1 h-14 text-lg rounded-full bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold shadow-xl shadow-blue-200 transition-all hover:translate-y-[-2px] flex items-center justify-center gap-2">
                                 <Calculator size={20} /> คำนวณและดูผลลัพธ์
                             </Button>
                         )}
@@ -1256,7 +1256,7 @@ export const RetirementInputSection: React.FC<RetirementInputSectionProps> = ({
                                 <ul className="space-y-2.5">
                                     {missingFields.map((field, idx) => (
                                         <li key={idx} className="flex items-start gap-3 text-sm font-semibold text-slate-700">
-                                            <div className="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                            <div className="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0 mt-0.5">
                                                 <X size={12} strokeWidth={3} />
                                             </div>
                                             {field}
