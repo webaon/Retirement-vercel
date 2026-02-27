@@ -87,13 +87,9 @@ export const MobileProjectionChart: React.FC<MobileProjectionChartProps> = ({
         return String(val);
     };
 
-    // Enforce minimum interval of 5 years on mobile/vertical charts to prevent overcrowding
-    // บังคับให้แสดงผลทุก 5 ปี หากเลือก 1 ปี เพื่อไม่ให้กราฟบนจอมือถือแน่นเกินไป
-    // If user selects 1 Year on desktop, mobile will still show 5 Years.
-    // Enforce minimum interval of 5 years on mobile/vertical charts to prevent overcrowding
-    // บังคับให้แสดงผลทุก 5 ปี หากเลือกต่ำกว่า 5 ปี (เช่น 2 ปี) เพื่อไม่ให้กราฟบนจอมือถือแน่นเกินไป
-    // If user selects 2 Years on desktop, mobile will still show 5 Years.
-    const effectiveInterval = chartTickInterval < 5 ? 5 : chartTickInterval;
+    // Enforce minimum interval of 2 years on mobile charts to prevent overcrowding
+    // Allow 2-year interval but bump 1-year to 2 on mobile
+    const effectiveInterval = chartTickInterval < 2 ? 2 : chartTickInterval;
 
     const chartData = useMemo(() => {
         // เตรียมข้อมูลชุดข้อมูล (Series)
@@ -393,7 +389,7 @@ export const MobileProjectionChart: React.FC<MobileProjectionChartProps> = ({
                 },
             } as ChartOptions
         };
-    }, [inputs, result, mcResult, showSumAssured, showActualSavings, insuranceChartData, effectiveInterval, orientation, showTarget, showLegacy]);
+    }, [inputs, result, mcResult, showSumAssured, showActualSavings, insuranceChartData, effectiveInterval, orientation, showTarget, showLegacy, showMC]);
 
     // Calculate Scroll Width for Vertical Mode
     const minVerticalWidth = Math.max((typeof window !== 'undefined' ? window.innerWidth : 800) - 32, chartData.data.labels.length * 50);

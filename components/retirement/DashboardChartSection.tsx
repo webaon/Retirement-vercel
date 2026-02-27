@@ -164,7 +164,7 @@ export const DashboardChartSection: React.FC<DashboardChartSectionProps> = ({
                         </button>
                     </div>
                 </div>
-                <div id="printable-chart" className="w-full relative h-[600px] md:h-[600px] print:h-[350px] print:min-h-0 bg-white rounded-3xl border border-slate-100 p-4 md:p-6 print:p-0 print:border-none print:shadow-none overflow-hidden print:overflow-visible print:break-inside-avoid">
+                <div id="printable-chart" className="w-full relative h-[600px] md:h-[600px] print:h-[350px] print:min-h-0 bg-white rounded-3xl border border-slate-100 p-4 md:p-6 print:p-0 print:border-none print:shadow-none overflow-visible print:overflow-visible print:break-inside-avoid">
                     <div className="hidden md:block print:block print:w-full print:h-full w-full h-full">
                         <div className={`w-full h-full ${viewMode === 'bar' ? 'block xl:hidden' : 'hidden'}`}>
                             <MobileProjectionChart inputs={inputs} result={result} mcResult={mcResult} showSumAssured={showSumAssured} setShowSumAssured={setShowSumAssured} showActualSavings={showActualSavings} setShowActualSavings={setShowActualSavings} insuranceChartData={insuranceChartData} chartTickInterval={chartTickInterval} showMC={showMC} setShowMC={setShowMC} initialOrientation="vertical" hideOrientationToggle={false} />
