@@ -310,7 +310,7 @@ export const RetirementDashboard = ({
             </div>
 
             {/* Mobile Backdrop for Summary */}
-            <div className={`fixed inset-0 z-140 bg-black/20 backdrop-blur-sm transition-opacity duration-300 xl:hidden ${isSummaryOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setIsSummaryOpen(false)} />
+            <div className={`fixed inset-0 z-140 bg-black/20 backdrop-blur-sm transition-opacity duration-300 xl:hidden ${isSummaryOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} />
 
             {/* RIGHT: Summary Panel */}
             <div className={`
@@ -323,7 +323,7 @@ export const RetirementDashboard = ({
             `}>
                 <div className={`
                     transition-all duration-500 cubic-bezier(0.32, 0.72, 0, 1) w-full overflow-hidden pointer-events-auto
-                    max-w-lg bg-white rounded-[32px] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] md:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] flex flex-col h-[80vh] md:h-[70vh]
+                    max-w-2xl bg-white rounded-[32px] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] md:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] flex flex-col h-[90vh]
                     ${isSummaryOpen ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'}
                     xl:max-w-none xl:bg-transparent xl:rounded-none xl:shadow-none xl:h-full xl:max-h-none xl:overflow-hidden xl:translate-y-0 xl:opacity-100 xl:scale-100 xl:pointer-events-auto
                 `}>

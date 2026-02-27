@@ -1043,7 +1043,7 @@ export const RetirementInputSection: React.FC<RetirementInputSectionProps> = ({
                     tooltip="เงินก้อนที่คุณคาดว่าจะได้รับในวันเกษียณ เช่น บำเหน็จ หรือเงินที่จะถอนมาใช้ช่วงเกษียณที่นอกจากลงทุน"
                 />
                 <InputControl
-                    label="เงินเดือนหลังเกษียณ (ต่อเดือน)"
+                    label="เงินเดือนหลังเกษียณ (ต่อเดือน เช่น บำนาญ 6,000 บาท)"
                     value={form.retirePension}
                     field="retirePension"
                     icon={DollarSign}
@@ -1060,7 +1060,7 @@ export const RetirementInputSection: React.FC<RetirementInputSectionProps> = ({
 
                 <div className="p-4 space-y-4 pt-6 border-t border-slate-100/50">
                     <InputControl
-                        label="ค่าใช้จ่ายหลังเกษียณ (ต่อเดือน ไม่คิดเงินเฟ้อ) โดยทั่วไปมักเป็น 80% ของค่าใช้จ่ายปัจจุบัน"
+                        label="ค่าใช้จ่ายหลังเกษียณ (ต่อเดือน ไม่คิดเงินเฟ้อ)"
                         value={form.retireExtraExpense}
                         field="retireExtraExpense"
                         icon={Home}
