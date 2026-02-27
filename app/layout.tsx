@@ -53,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="th">
+    <html lang="th" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -62,6 +62,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${inter.variable} ${robotoMono.variable} antialiased`}
+        suppressHydrationWarning
       >
         {children}
       </body>
