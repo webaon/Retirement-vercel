@@ -18,6 +18,10 @@ import {
 } from "@/lib/retirement-calculation";
 import { formatInputDisplay, formatNumber } from "@/lib/utils";
 import { useInsuranceLogic } from "@/components/retirement/DashboardModals";
+import { useFormHandlers } from "./useFormHandlers";
+import { useInsurancePlans } from "./useInsurancePlans";
+import { useFamilyMembers } from "./useFamilyMembers";
+import { usePlanExport } from "./usePlanExport";
 
 export function useRetirementApp() {
     /* ---------- Authentication (mock) ---------- */
@@ -847,7 +851,28 @@ export function useRetirementApp() {
             addInsurancePlan, removeInsurancePlan, updateInsurancePlan, changeInsuranceBy, updateSurrenderTable,
             syncCurrentToFamily, loadMember, handleSwitchMember, handleAddMember, handleRemoveMember, getFamilySummary, handleConfirmDraft,
             handleSavePlan, handleLoadPlan, handleDeletePlan, resetRetirement, handleLogin, handleLogout,
-            handleExportExcel, handlePrint, handleUpdateUser
+            handleExportExcel, handlePrint, handleUpdateUser,
+            handleExportJSON: () => {
+                const { exportPlanToJSON, downloadJSON } = require("@/lib/planStorage");
+                const json = exportPlanToJSON(form, gender, savingMode, returnMode, allocations);
+                const planName = form.planName || "retirement-plan";
+                downloadJSON(json, `${planName.replace(/\s+/g, "_")}.json`);
+            },
+            handleImportJSON: async (file: File) => {
+                const { importPlanFromJSON, readFileAsText } = require("@/lib/planStorage");
+                try {
+                    const text = await readFileAsText(file);
+                    const data = importPlanFromJSON(text);
+                    setForm(data.form);
+                    setGender(data.gender);
+                    setSavingMode(data.savingMode);
+                    setReturnMode(data.returnMode);
+                    if (data.allocations?.length > 0) setAllocations(data.allocations);
+                    alert("นำเข้าข้อมูลสำเร็จ!");
+                } catch (err: any) {
+                    alert(`นำเข้าข้อมูลไม่สำเร็จ: ${err.message}`);
+                }
+            }
         }
     };
 }
