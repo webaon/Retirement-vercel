@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo, useState } from 'react';
 import {
     Chart as ChartJS,
@@ -6,6 +8,8 @@ import {
     PointElement,
     LineElement,
     BarElement,
+    BarController,
+    LineController,
     Title,
     Tooltip,
     Legend,
@@ -27,6 +31,8 @@ ChartJS.register(
     PointElement,
     LineElement,
     BarElement,
+    BarController,
+    LineController,
     Title,
     Tooltip,
     Legend,
@@ -390,7 +396,7 @@ export const MobileProjectionChart: React.FC<MobileProjectionChartProps> = ({
     }, [inputs, result, mcResult, showSumAssured, showActualSavings, insuranceChartData, effectiveInterval, orientation, showTarget, showLegacy]);
 
     // Calculate Scroll Width for Vertical Mode
-    const minVerticalWidth = Math.max(window.innerWidth - 32, chartData.data.labels.length * 50);
+    const minVerticalWidth = Math.max((typeof window !== 'undefined' ? window.innerWidth : 800) - 32, chartData.data.labels.length * 50);
 
     return (
         <div className="w-full h-full flex flex-col relative">
@@ -442,7 +448,7 @@ export const MobileProjectionChart: React.FC<MobileProjectionChartProps> = ({
                         onClick={() => setShowActualSavings && setShowActualSavings(!showActualSavings)}
                         className={`flex items-center gap-2 transition-all active:scale-95 ${showActualSavings ? 'opacity-100' : 'opacity-40 grayscale'}`}
                     >
-                        <div className="w-2.5 h-2.5 bg-[#10B981] rounded-full shadow-sm flex-shrink-0"></div>
+                        <div className="w-2.5 h-2.5 bg-[#10B981] rounded-full shadow-sm shrink-0"></div>
                         <span className="text-[11px] lg:text-xs font-black tracking-tight text-slate-500">เงินออม ({inputs.retireAge} ปี)</span>
                     </button>
 
@@ -451,7 +457,7 @@ export const MobileProjectionChart: React.FC<MobileProjectionChartProps> = ({
                         onClick={() => setShowTarget(!showTarget)}
                         className={`flex items-center gap-2 transition-all active:scale-95 ${showTarget ? 'opacity-100' : 'opacity-40 grayscale'}`}
                     >
-                        <div className="w-2.5 h-2.5 bg-[#3b82f6] rounded-full shadow-sm flex-shrink-0"></div>
+                        <div className="w-2.5 h-2.5 bg-[#3b82f6] rounded-full shadow-sm shrink-0"></div>
                         <span className="text-[11px] lg:text-xs font-black tracking-tight text-slate-500">เงินที่ต้องการ</span>
                     </button>
 
@@ -461,7 +467,7 @@ export const MobileProjectionChart: React.FC<MobileProjectionChartProps> = ({
                             onClick={() => setShowLegacy(!showLegacy)}
                             className={`flex items-center gap-2 transition-all active:scale-95 ${showLegacy ? 'opacity-100' : 'opacity-40 grayscale'}`}
                         >
-                            <div className="w-2.5 h-2.5 bg-[#EF4444] rounded-full border border-white flex-shrink-0"></div>
+                            <div className="w-2.5 h-2.5 bg-[#EF4444] rounded-full border border-white shrink-0"></div>
                             <span className="text-[11px] lg:text-xs font-black tracking-tight text-slate-500">มรดก</span>
                         </button>
                     )}
@@ -471,7 +477,7 @@ export const MobileProjectionChart: React.FC<MobileProjectionChartProps> = ({
                         onClick={() => setShowSumAssured && setShowSumAssured(!showSumAssured)}
                         className={`flex items-center gap-2 transition-all active:scale-95 ${showSumAssured ? 'opacity-100' : 'opacity-40 grayscale'}`}
                     >
-                        <div className="w-2.5 h-2.5 bg-[#F97316] rounded-full shadow-sm flex-shrink-0"></div>
+                        <div className="w-2.5 h-2.5 bg-[#F97316] rounded-full shadow-sm shrink-0"></div>
                         <span className="text-[11px] lg:text-xs font-black tracking-tight text-slate-500">ทุนประกัน</span>
                     </button>
 
@@ -481,7 +487,7 @@ export const MobileProjectionChart: React.FC<MobileProjectionChartProps> = ({
                             onClick={() => setShowMC(!showMC)}
                             className={`flex items-center gap-2 transition-all active:scale-95 ${showMC ? 'opacity-100' : 'opacity-40 grayscale'}`}
                         >
-                            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 opacity-60 border border-emerald-500/30 flex-shrink-0"></div>
+                            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 opacity-60 border border-emerald-500/30 shrink-0"></div>
                             <span className="text-[11px] lg:text-xs font-black tracking-tight text-slate-500">Monte Carlo</span>
                         </button>
                     )}

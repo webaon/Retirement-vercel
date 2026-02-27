@@ -1,11 +1,20 @@
 "use client";
 
 import React from "react";
-import { ProjectionChart } from "./DashboardCharts";
-import { MobileProjectionChart } from "./MobileProjectionChart";
+import dynamic from "next/dynamic";
 import { formatNumber, formatNumber2 } from "@/lib/utils";
 import { RetirementInputs, CalculationResult, MonteCarloResult, FormState } from "@/types/retirement";
 import { buildProjectionSeries } from "@/lib/retirement-calculation";
+
+const ProjectionChart = dynamic(
+    () => import("./DashboardCharts").then(mod => mod.ProjectionChart),
+    { ssr: false, loading: () => <div className="w-full h-full flex items-center justify-center text-slate-400 animate-pulse">กำลังโหลดกราฟ...</div> }
+);
+
+const MobileProjectionChart = dynamic(
+    () => import("./MobileProjectionChart").then(mod => mod.MobileProjectionChart),
+    { ssr: false, loading: () => <div className="w-full h-full flex items-center justify-center text-slate-400 animate-pulse">กำลังโหลดกราฟ...</div> }
+);
 
 interface DashboardChartSectionProps {
     inputs: RetirementInputs;
