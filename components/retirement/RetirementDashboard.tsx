@@ -221,7 +221,7 @@ export const RetirementDashboard = ({
                         w-full
                     `}>
                         {/* Results Header + Toolbar */}
-                        <div className="sticky top-0 z-30 flex flex-row items-center justify-between gap-4 mb-4 py-3 -mx-4 px-4 md:mx-0 md:px-0 bg-[#0a0e17]/60 backdrop-blur-xl  overflow-hidden md:static md:bg-transparent md:border-none md:pt-4 md:pb-0 print:hidden transition-all duration-200 md:shadow-none">
+                        <div className="sticky top-0 z-30 flex flex-row items-center justify-between gap-4 mb-4 py-3 -mx-4 px-4 sm:mx-0 md:px-0  overflow-hidden md:static md:bg-transparent md:border-none md:pt-4 md:pb-0 print:hidden transition-all duration-200 md:shadow-none">
                             <div className="relative z-10 flex flex-wrap items-baseline gap-3 max-w-[70%] md:max-w-none">
                                 <h2 className="text-2xl font-black text-slate-800 tracking-tight wrap-break-word">สรุปผลลัพธ์ทางการเงิน</h2>
                                 <span className="text-slate-400 text-sm font-medium hidden sm:inline-block">(Financial Overview)</span>
