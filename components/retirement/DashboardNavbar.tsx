@@ -17,7 +17,7 @@ export const DashboardNavbar: React.FC<DashboardNavbarProps> = ({
     onBack,
 }) => {
     return (
-        <div className="bg-white/80 backdrop-blur-md border-b border-slate-200 fixed top-0 left-0 right-0 z-50 px-6 py-4 shadow-sm flex items-center justify-between print:hidden h-[72px]">
+        <div className="bg-white/80 backdrop-blur-md border-b border-slate-200 fixed top-0 left-0 right-0 z-20 px-6 py-4 shadow-sm flex items-center justify-between print:hidden h-[72px]">
             <div className="flex items-center gap-3">
                 {onBack ? (
                     <button

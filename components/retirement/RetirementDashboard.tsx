@@ -161,7 +161,7 @@ export const RetirementDashboard = ({
             {/* NAVBAR */}
             <DashboardNavbar user={user} onLogout={onLogout} onEditProfile={onEditProfile} onBack={onBack} />
 
-            <div className="w-full px-3 md:px-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 relative z-10 print:px-0 print:space-y-4 pt-[72px] print:pt-0">
+            <div className="w-full px-3 md:px-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 relative print:px-0 print:space-y-4 pt-[72px] print:pt-0">
                 <div className="flex flex-col xl:flex-row items-start gap-0 relative">
 
                     {/* Mobile Backdrop for Sidebar */}
@@ -332,7 +332,7 @@ export const RetirementDashboard = ({
             </div>
 
             {/* Mobile Bottom Bar */}
-            <div className={`fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl border-t border-slate-200 pt-1 pb-2 px-4 z-60 xl:hidden shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.08)] transition-all duration-300 ${isSummaryOpen ? 'translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'}`}>
+            <div className={`fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl border-t border-slate-200 pt-1 pb-2 px-4 z-10 xl:hidden shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.08)] transition-all duration-300 ${isSummaryOpen ? 'translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'}`}>
                 <div className="grid grid-cols-3 w-full max-w-5xl mx-auto items-end">
                     <div className="flex justify-center">
                         <button onClick={() => setIsSidebarOpen(prev => !prev)} className="flex flex-col items-center justify-center gap-1 group transition-all">
