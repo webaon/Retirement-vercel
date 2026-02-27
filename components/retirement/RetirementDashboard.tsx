@@ -221,13 +221,13 @@ export const RetirementDashboard = ({
                         w-full
                     `}>
                         {/* Results Header + Toolbar */}
-                        <div className="sticky top-0 z-30 flex flex-row items-center justify-between gap-4 mb-4 py-3 -mx-4 px-4 md:mx-0 md:px-0 bg-[#0a0e17]/60 backdrop-blur-xl relative overflow-hidden md:static md:bg-transparent md:border-none md:pt-4 md:pb-0 print:hidden transition-all duration-200 md:shadow-none">
+                        <div className="sticky top-0 z-30 flex flex-row items-center justify-between gap-4 mb-4 py-3 -mx-4 px-4 md:mx-0 md:px-0 bg-[#0a0e17]/60 backdrop-blur-xl  overflow-hidden md:static md:bg-transparent md:border-none md:pt-4 md:pb-0 print:hidden transition-all duration-200 md:shadow-none">
                             <div className="relative z-10 flex flex-wrap items-baseline gap-3 max-w-[70%] md:max-w-none">
-                                <h2 className="text-2xl font-black text-white tracking-tight wrap-break-word">สรุปผลลัพธ์ทางการเงิน</h2>
+                                <h2 className="text-2xl font-black text-slate-800 tracking-tight wrap-break-word">สรุปผลลัพธ์ทางการเงิน</h2>
                                 <span className="text-slate-400 text-sm font-medium hidden sm:inline-block">(Financial Overview)</span>
                             </div>
                             <div className="flex flex-wrap items-center gap-2">
-                                <Button variant="outline" size="sm" className={`h-9 px-4 rounded-xl border font-bold text-xs transition-all gap-2 hidden xl:flex ${isSidebarOpen ? 'bg-indigo-500/20 border-indigo-400/30 text-indigo-300 shadow-sm' : 'bg-white/10 border-white/10 text-slate-300 hover:bg-white/20 hover:text-white'}`} onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                                <Button variant="outline" size="sm" className={`h-9 px-4 rounded-xl border font-bold text-xs transition-all gap-2 hidden xl:flex ${isSidebarOpen ? 'bg-indigo-500/20 border-indigo-400/30 text-indigo-500 shadow-sm' : 'bg-white/10 border-white/10 text-slate-600 hover:bg-white/20 hover:text-slate-800'}`} onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                                     {isSidebarOpen ? <PanelLeftClose className="w-4 h-4" /> : <PanelLeftOpen className="w-4 h-4" />}
                                     ปรับแผน
                                 </Button>
@@ -238,12 +238,12 @@ export const RetirementDashboard = ({
                                     </Button>
                                 )}
                                 {form.insurancePlans.length > 0 && (
-                                    <Button variant="outline" size="sm" className={`h-9 px-4 rounded-xl border font-bold text-xs transition-all gap-2 hidden xl:flex ${showInsuranceTable ? 'bg-indigo-500/20 border-indigo-400/30 text-indigo-300 shadow-sm' : 'bg-white/10 border-white/10 text-slate-300 hover:bg-white/20 hover:text-white'}`} onClick={() => { setForm(prev => ({ ...prev, selectedPlanId: null })); setShowInsuranceTable(true); }}>
+                                    <Button variant="outline" size="sm" className={`h-9 px-4 rounded-xl border font-bold text-xs transition-all gap-2 hidden xl:flex ${showInsuranceTable ? 'bg-indigo-500/20 border-indigo-400/30 text-indigo-500 shadow-sm' : 'bg-white/10 border-white/10 text-slate-600 hover:bg-white/20 hover:text-white'}`} onClick={() => { setForm(prev => ({ ...prev, selectedPlanId: null })); setShowInsuranceTable(true); }}>
                                         <TableIcon className="w-4 h-4" />
                                         พอร์ตประกัน
                                     </Button>
                                 )}
-                                <Button variant="outline" size="sm" className={`h-9 px-3 md:px-4 rounded-xl border font-bold text-xs transition-all gap-2 flex ${isSummaryOpen ? 'bg-indigo-500/20 border-indigo-400/30 text-indigo-300 shadow-sm' : 'bg-white/10 border-white/10 text-slate-300 hover:bg-white/20 hover:text-white'}`} onClick={() => setIsSummaryOpen(!isSummaryOpen)}>
+                                <Button variant="outline" size="sm" className={`h-9 px-3 md:px-4 rounded-xl border font-bold text-xs transition-all gap-2 flex ${isSummaryOpen ? 'bg-indigo-500/20 border-indigo-400/30 text-indigo-500 shadow-sm' : 'bg-white/10 border-white/10 text-slate-600 hover:bg-white/20 hover:text-slate-800'}`} onClick={() => setIsSummaryOpen(!isSummaryOpen)}>
                                     <PanelLeftClose className={`w-4 h-4 transition-transform duration-300 ${isSummaryOpen ? 'rotate-180' : ''}`} />
                                     <span className="hidden sm:inline">สรุปข้อมูล</span>
                                     <span className="sm:hidden">สรุปข้อมูล</span>
