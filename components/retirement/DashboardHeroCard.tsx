@@ -8,12 +8,14 @@ interface DashboardHeroCardProps {
     result: CalculationResult;
     form: FormState;
     isSidebarOpen: boolean;
+    isSummaryOpen: boolean;
 }
 
 export const DashboardHeroCard: React.FC<DashboardHeroCardProps> = ({
     result,
     form,
     isSidebarOpen,
+    isSummaryOpen,
 }) => {
     return (
         <div className={`min-w-[92%] sm:min-w-[380px] md:min-w-0 snap-center relative rounded-[28px] p-5 lg:p-8 xl:p-10 overflow-hidden font-sans border border-white/20 shadow-xl transition-all duration-500 group print:hidden min-h-[220px] md:min-h-0 flex flex-col justify-center ${result.status === 'enough' ? 'bg-linear-to-br from-[#065f46] via-[#059669] to-[#10b981]' : 'bg-linear-to-br from-[#991b1b] via-[#dc2626] to-[#ef4444]'}`}>
@@ -23,7 +25,9 @@ export const DashboardHeroCard: React.FC<DashboardHeroCardProps> = ({
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-black/10 rounded-full blur-[80px] -ml-20 -mb-20 pointer-events-none"></div>
 
             {/* Content Container */}
-            <div className={`relative z-10 flex flex-col ${isSidebarOpen ? '2xl:flex-row' : 'lg:flex-row'} lg:items-center justify-between gap-6 lg:gap-10 h-full`}>
+            <div className={`relative z-10 flex flex-col lg:items-center justify-between gap-6 lg:gap-10 h-full
+                ${isSidebarOpen && isSummaryOpen ? '' : isSidebarOpen || isSummaryOpen ? 'xl:flex-row' : 'lg:flex-row'}
+            `}>
                 {/* Left Side: Status & Message */}
                 <div className="flex-1 space-y-4 lg:space-y-6 flex flex-col justify-center">
                     <div className={`inline-flex items-center gap-2.5 px-3 py-1.5 lg:px-4 lg:py-2 rounded-full border backdrop-blur-md shadow-sm ${result.status === 'enough' ? 'bg-emerald-500/20 border-emerald-400/30 text-emerald-50' : 'bg-red-500/20 border-red-400/30 text-red-50'}`}>
@@ -54,13 +58,13 @@ export const DashboardHeroCard: React.FC<DashboardHeroCardProps> = ({
                 </div>
 
                 {/* Right Side: Summary Stats Card */}
-                <div className="hidden lg:block shrink-0 relative group/stats cursor-default w-full lg:w-auto">
+                <div className={`hidden lg:block relative group/stats cursor-default ${isSummaryOpen && isSidebarOpen ? 'w-full' : 'shrink-0 w-full lg:w-auto'}`}>
                     <div className="absolute inset-0 bg-white/20 blur-xl rounded-[24px] lg:rounded-[32px] transform rotate-1 lg:rotate-3 group-hover/stats:rotate-2 lg:group-hover/stats:rotate-6 transition-transform duration-500"></div>
                     <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-[24px] lg:rounded-[32px] p-6 lg:p-8 min-w-[280px] lg:min-w-[320px] shadow-2xl overflow-hidden">
                         {/* Shine Effect */}
                         <div className="absolute inset-0 bg-linear-to-tr from-white/0 via-white/10 to-white/0 -translate-x-full group-hover/stats:translate-x-full transition-transform duration-1000"></div>
 
-                        <div className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-6 ">
                             <div className="flex-1">
                                 <div className="flex justify-between items-center mb-1">
                                     <p className="text-sm lg:text-base font-bold text-white/90 uppercase tracking-wide">เงินออมที่มีตอนอายุเกษียณ ({form.retireAge} ปี)</p>

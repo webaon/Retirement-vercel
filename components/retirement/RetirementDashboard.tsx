@@ -229,8 +229,8 @@ export const RetirementDashboard = ({
                     {/* RIGHT: Main Content */}
                     <div id="results-section" className={`
                         flex-1 min-w-0 space-y-8 transition-all duration-500 ease-in-out pb-20 print:pb-0
-                        ${isSidebarOpen ? 'xl:ml-[420px]' : 'ml-0'}
-                        ${isSummaryOpen ? 'xl:mr-[380px]' : 'mr-0'}
+                        ${isSidebarOpen ? 'xl:ml-[380px]' : 'ml-0'}
+                        ${isSummaryOpen ? 'xl:mr-[340px]' : 'mr-0'}
                         w-full
                     `}>
                         {/* Results Header + Toolbar */}
@@ -239,17 +239,12 @@ export const RetirementDashboard = ({
                                 <h2 className="text-2xl font-black text-slate-800 tracking-tight wrap-break-word">สรุปผลลัพธ์ทางการเงิน</h2>
                                 <span className="text-slate-400 text-sm font-medium hidden sm:inline-block">(Financial Overview)</span>
                             </div>
-                            <div className="flex flex-wrap items-center gap-2">
+                            <div className="flex flex-wrap items-center justify-end gap-2">
+
                                 <Button variant="outline" size="sm" className={`h-9 px-4 rounded-xl border font-bold text-xs transition-all gap-2 hidden md:flex ${isSidebarOpen ? 'bg-indigo-500/20 border-indigo-400/30 text-indigo-500 shadow-sm' : 'bg-white/10 border-white/10 text-slate-600 hover:bg-white/20 hover:text-slate-800'}`} onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                                     {isSidebarOpen ? <PanelLeftClose className="w-4 h-4" /> : <PanelLeftOpen className="w-4 h-4" />}
                                     ปรับแผน
                                 </Button>
-                                {planType === "family" && (
-                                    <Button variant="outline" size="sm" className="h-9 px-4 rounded-xl border border-white/10 bg-white/10 text-slate-600 font-bold text-xs hover:bg-white/20 hover:text-slate-800 transition-all gap-2" onClick={() => { syncCurrentToFamily(); setShowFamilyResult(true); }}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
-                                        ผลลัพธ์ครอบครัว
-                                    </Button>
-                                )}
                                 {form.insurancePlans.length > 0 && (
                                     <Button variant="outline" size="sm" className={`h-9 px-4 rounded-xl border font-bold text-xs transition-all gap-2 hidden md:flex ${showInsuranceTable ? 'bg-indigo-500/20 border-indigo-400/30 text-indigo-500 shadow-sm' : 'bg-white/10 border-white/10 text-slate-600 hover:bg-white/20 hover:text-white'}`} onClick={() => { setForm(prev => ({ ...prev, selectedPlanId: null })); setShowInsuranceTable(true); }}>
                                         <TableIcon className="w-4 h-4" />
@@ -261,12 +256,18 @@ export const RetirementDashboard = ({
                                     <span className="hidden sm:inline">สรุปข้อมูล</span>
                                     {/* <span className="sm:hidden">สรุปข้อมูล</span> */}
                                 </Button>
+                                {planType === "family" && (
+                                    <Button variant="outline" size="sm" className="h-9 px-4 rounded-xl border border-white/10 bg-white/10 text-slate-600 font-bold text-xs hover:bg-white/20 hover:text-slate-800 transition-all gap-2" onClick={() => { syncCurrentToFamily(); setShowFamilyResult(true); }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+                                        ผลลัพธ์ครอบครัว
+                                    </Button>
+                                )}
                             </div>
                         </div>
 
                         {/* Mobile Carousel: Hero + Metrics */}
                         <div ref={carouselRef} className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 px-4 -mx-4 pb-6 items-stretch md:pb-0 md:px-0 md:mx-0 md:block md:space-y-6 md:overflow-visible no-scrollbar print:hidden">
-                            <DashboardHeroCard result={result} form={form} isSidebarOpen={isSidebarOpen} />
+                            <DashboardHeroCard result={result} form={form} isSidebarOpen={isSidebarOpen} isSummaryOpen={isSummaryOpen} />
                             <DashboardMetricCards
                                 result={result} form={form} isSidebarOpen={isSidebarOpen}
                                 onShowProjectedModal={() => setShowProjectedModal(true)}
