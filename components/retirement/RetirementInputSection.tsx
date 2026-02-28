@@ -1150,10 +1150,10 @@ export const RetirementInputSection: React.FC<RetirementInputSectionProps> = ({
             <div className={`bg-white/95 backdrop-blur-xl flex flex-col relative overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-100/50 ${isEmbedded ? 'p-5 rounded-3xl shadow-md shadow-slate-300/50 border border-slate-300 ring-1 ring-white/50' : 'p-6 md:p-10 rounded-[3rem] shadow-2xl shadow-slate-200/50 border border-slate-100 min-h-[600px] mx-2'}`}>
 
                 {/* Content */}
-                <div className="flex-1 relative z-10 pb-8 space-y-8">
+                <div className="flex-1 relative z-10 pb-4 space-y-4">
                     {/* Step 1: Personal Details */}
                     {(isEmbedded || step === 1) && (
-                        <div className={isEmbedded ? "border-b border-slate-100 pb-8" : ""}>
+                        <div className={isEmbedded ? "border-b border-slate-100 pb-0" : ""}>
                             {isEmbedded ? (
                                 <button onClick={() => toggleSection(1)} className="w-full flex items-center justify-between mb-4 group">
                                     <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
@@ -1163,13 +1163,13 @@ export const RetirementInputSection: React.FC<RetirementInputSectionProps> = ({
                                     {expandedSections[1] ? <ChevronUp className="w-5 h-5 text-slate-400 group-hover:text-slate-600" /> : <ChevronDown className="w-5 h-5 text-slate-400 group-hover:text-slate-600" />}
                                 </button>
                             ) : null}
-                            <div className={isEmbedded && !expandedSections[1] ? 'hidden' : 'block'}>
+                            <div className={isEmbedded && !expandedSections[1] ? 'hidden' : 'block pb-8'}>
                                 {renderPersonalStep()}
                             </div>
                         </div>
                     )}
                     {(isEmbedded || step === 2) && (
-                        <div className={isEmbedded ? "border-b border-slate-100 pb-8" : ""}>
+                        <div className={isEmbedded ? "border-b border-slate-100 " : ""}>
                             {isEmbedded ? (
                                 <button onClick={() => toggleSection(2)} className="w-full flex items-center justify-between mb-4 group">
                                     <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
@@ -1179,7 +1179,7 @@ export const RetirementInputSection: React.FC<RetirementInputSectionProps> = ({
                                     {expandedSections[2] ? <ChevronUp className="w-5 h-5 text-slate-400 group-hover:text-slate-600" /> : <ChevronDown className="w-5 h-5 text-slate-400 group-hover:text-slate-600" />}
                                 </button>
                             ) : null}
-                            <div className={isEmbedded && !expandedSections[2] ? 'hidden' : 'block'}>
+                            <div className={isEmbedded && !expandedSections[2] ? 'hidden' : 'block pb-8'}>
                                 {renderFinancialStep()}
                             </div>
                         </div>

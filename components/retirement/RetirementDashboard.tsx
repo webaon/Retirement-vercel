@@ -194,8 +194,8 @@ export const RetirementDashboard = ({
                             xl:max-w-none xl:bg-transparent xl:rounded-none xl:shadow-none xl:h-auto xl:max-h-none xl:overflow-visible xl:translate-y-0 xl:opacity-100
                         `}>
                             <div className="overflow-y-auto p-0 xl:p-0 custom-scrollbar xl:overflow-visible flex flex-col items-center xl:block">
-                                <div className="w-full max-w-2xl xl:max-w-none">
-                                    <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-md px-5 py-4 flex items-center justify-between border-b border-slate-100 shadow-sm">
+                                <div className="w-full  xl:max-w-none">
+                                    <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-md px-5 py-4 flex items-center justify-between shadow-sm lg:shadow-none">
                                         <div>
                                             <h2 className="text-xl font-black text-slate-800 tracking-tight">ปรับแผนการเงิน</h2>
                                             <span className="text-slate-500 text-xs font-medium">กำหนดแผนเกษียณในแบบของคุณ</span>
@@ -204,21 +204,25 @@ export const RetirementDashboard = ({
                                             <CloseIcon size={20} strokeWidth={2.5} />
                                         </Button>
                                     </div>
-                                    <RetirementInputSection
-                                        user={user} form={form} handleChange={handleChange} changeBy={changeBy}
-                                        gender={gender} setGender={setGender}
-                                        addInsurancePlan={addInsurancePlan} removeInsurancePlan={removeInsurancePlan} updateInsurancePlan={updateInsurancePlan}
-                                        onViewTable={(id) => { if (id) setForm(prev => ({ ...prev, selectedPlanId: id })); setShowInsuranceTable(true); }}
-                                        savingMode={savingMode} setSavingMode={setSavingMode}
-                                        returnMode={returnMode} setReturnMode={setReturnMode}
-                                        allocations={allocations} addAllocation={addAllocation} removeAllocation={removeAllocation} updateAllocation={updateAllocation}
-                                        onCalculate={() => {
-                                            setIsSidebarOpen(false); setIsSummaryOpen(false);
-                                            setShowInsuranceTable(false); setShowProjectedModal(false); setShowTargetModal(false); setShowExpenseModal(false); setShowMonteCarloDetails(false);
-                                            setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 550);
-                                        }}
-                                        isEmbedded={true}
-                                    />
+                                    <div className="max-w-2xl xl:max-w-none">
+                                        <div className="flex justify-center">
+                                            <RetirementInputSection
+                                                user={user} form={form} handleChange={handleChange} changeBy={changeBy}
+                                                gender={gender} setGender={setGender}
+                                                addInsurancePlan={addInsurancePlan} removeInsurancePlan={removeInsurancePlan} updateInsurancePlan={updateInsurancePlan}
+                                                onViewTable={(id) => { if (id) setForm(prev => ({ ...prev, selectedPlanId: id })); setShowInsuranceTable(true); }}
+                                                savingMode={savingMode} setSavingMode={setSavingMode}
+                                                returnMode={returnMode} setReturnMode={setReturnMode}
+                                                allocations={allocations} addAllocation={addAllocation} removeAllocation={removeAllocation} updateAllocation={updateAllocation}
+                                                onCalculate={() => {
+                                                    setIsSidebarOpen(false); setIsSummaryOpen(false);
+                                                    setShowInsuranceTable(false); setShowProjectedModal(false); setShowTargetModal(false); setShowExpenseModal(false); setShowMonteCarloDetails(false);
+                                                    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 550);
+                                                }}
+                                                isEmbedded={true}
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -238,18 +242,18 @@ export const RetirementDashboard = ({
                                 <span className="text-slate-400 text-sm font-medium hidden sm:inline-block">(Financial Overview)</span>
                             </div>
                             <div className="flex flex-wrap items-center gap-2">
-                                <Button variant="outline" size="sm" className={`h-9 px-4 rounded-xl border font-bold text-xs transition-all gap-2 hidden xl:flex ${isSidebarOpen ? 'bg-indigo-500/20 border-indigo-400/30 text-indigo-500 shadow-sm' : 'bg-white/10 border-white/10 text-slate-600 hover:bg-white/20 hover:text-slate-800'}`} onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                                <Button variant="outline" size="sm" className={`h-9 px-4 rounded-xl border font-bold text-xs transition-all gap-2 hidden md:flex ${isSidebarOpen ? 'bg-indigo-500/20 border-indigo-400/30 text-indigo-500 shadow-sm' : 'bg-white/10 border-white/10 text-slate-600 hover:bg-white/20 hover:text-slate-800'}`} onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                                     {isSidebarOpen ? <PanelLeftClose className="w-4 h-4" /> : <PanelLeftOpen className="w-4 h-4" />}
                                     ปรับแผน
                                 </Button>
                                 {planType === "family" && (
-                                    <Button variant="outline" size="sm" className="h-9 px-4 rounded-xl border border-white/10 bg-white/10 text-slate-300 font-bold text-xs hover:bg-white/20 hover:text-white transition-all gap-2" onClick={() => { syncCurrentToFamily(); setShowFamilyResult(true); }}>
+                                    <Button variant="outline" size="sm" className="h-9 px-4 rounded-xl border border-white/10 bg-white/10 text-slate-600 font-bold text-xs hover:bg-white/20 hover:text-slate-800 transition-all gap-2" onClick={() => { syncCurrentToFamily(); setShowFamilyResult(true); }}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
                                         ผลลัพธ์ครอบครัว
                                     </Button>
                                 )}
                                 {form.insurancePlans.length > 0 && (
-                                    <Button variant="outline" size="sm" className={`h-9 px-4 rounded-xl border font-bold text-xs transition-all gap-2 hidden xl:flex ${showInsuranceTable ? 'bg-indigo-500/20 border-indigo-400/30 text-indigo-500 shadow-sm' : 'bg-white/10 border-white/10 text-slate-600 hover:bg-white/20 hover:text-white'}`} onClick={() => { setForm(prev => ({ ...prev, selectedPlanId: null })); setShowInsuranceTable(true); }}>
+                                    <Button variant="outline" size="sm" className={`h-9 px-4 rounded-xl border font-bold text-xs transition-all gap-2 hidden md:flex ${showInsuranceTable ? 'bg-indigo-500/20 border-indigo-400/30 text-indigo-500 shadow-sm' : 'bg-white/10 border-white/10 text-slate-600 hover:bg-white/20 hover:text-white'}`} onClick={() => { setForm(prev => ({ ...prev, selectedPlanId: null })); setShowInsuranceTable(true); }}>
                                         <TableIcon className="w-4 h-4" />
                                         พอร์ตประกัน
                                     </Button>
@@ -257,7 +261,7 @@ export const RetirementDashboard = ({
                                 <Button variant="outline" size="sm" className={`h-9 px-3 md:px-4 rounded-xl border font-bold text-xs transition-all gap-2 flex ${isSummaryOpen ? 'bg-indigo-500/20 border-indigo-400/30 text-indigo-500 shadow-sm' : 'bg-white/10 border-white/10 text-slate-600 hover:bg-white/20 hover:text-slate-800'}`} onClick={() => setIsSummaryOpen(!isSummaryOpen)}>
                                     <PanelLeftClose className={`w-4 h-4 transition-transform duration-300 ${isSummaryOpen ? 'rotate-180' : ''}`} />
                                     <span className="hidden sm:inline">สรุปข้อมูล</span>
-                                    <span className="sm:hidden">สรุปข้อมูล</span>
+                                    {/* <span className="sm:hidden">สรุปข้อมูล</span> */}
                                 </Button>
                             </div>
                         </div>
@@ -343,7 +347,7 @@ export const RetirementDashboard = ({
             </div>
 
             {/* Mobile Bottom Bar */}
-            <div className={`fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl border-t border-slate-200 pt-1 pb-2 px-4 z-10 xl:hidden shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.08)] transition-all duration-300 ${isSummaryOpen ? 'translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'}`}>
+            <div className={`fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl border-t border-slate-200 pt-1 pb-2 px-4 z-10 md:hidden shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.08)] transition-all duration-300 ${isSummaryOpen ? 'translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'}`}>
                 <div className="grid grid-cols-3 w-full max-w-5xl mx-auto items-end">
                     <div className="flex justify-center">
                         <button onClick={() => setIsSidebarOpen(prev => !prev)} className="flex flex-col items-center justify-center gap-1 group transition-all">
