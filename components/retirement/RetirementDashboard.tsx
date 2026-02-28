@@ -189,13 +189,13 @@ export const RetirementDashboard = ({
                     `}>
                         <div className={`
                             transition-all duration-500 cubic-bezier(0.32, 0.72, 0, 1) w-full
-                            max-w-none bg-white rounded-t-[32px] rounded-b-none shadow-[0_-10px_60px_-15px_rgba(0,0,0,0.15)] flex flex-col h-[90vh]
+                            max-w-none bg-white rounded-t-[32px] rounded-b-none shadow-[0_-10px_60px_-15px_rgba(0,0,0,0.15)] flex flex-col h-screen
                             ${isSidebarOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-100'}
                             xl:max-w-none xl:bg-transparent xl:rounded-none xl:shadow-none xl:h-auto xl:max-h-none xl:overflow-visible xl:translate-y-0 xl:opacity-100
                         `}>
                             <div className="overflow-y-auto p-0 xl:p-0 custom-scrollbar xl:overflow-visible flex flex-col items-center xl:block">
-                                <div className="w-full  xl:max-w-none">
-                                    <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-md px-5 py-4 flex items-center justify-between shadow-sm lg:shadow-none">
+                                <div className="w-full flex  items-center  flex-col xl:max-w-none">
+                                    <div className="sticky w-full top-0 z-40 bg-white/90 backdrop-blur-md px-5 py-4 flex items-center justify-between shadow-sm xl:shadow-none">
                                         <div>
                                             <h2 className="text-xl font-black text-slate-800 tracking-tight">ปรับแผนการเงิน</h2>
                                             <span className="text-slate-500 text-xs font-medium">กำหนดแผนเกษียณในแบบของคุณ</span>
@@ -204,24 +204,22 @@ export const RetirementDashboard = ({
                                             <CloseIcon size={20} strokeWidth={2.5} />
                                         </Button>
                                     </div>
-                                    <div className="max-w-2xl xl:max-w-none">
-                                        <div className="flex justify-center">
-                                            <RetirementInputSection
-                                                user={user} form={form} handleChange={handleChange} changeBy={changeBy}
-                                                gender={gender} setGender={setGender}
-                                                addInsurancePlan={addInsurancePlan} removeInsurancePlan={removeInsurancePlan} updateInsurancePlan={updateInsurancePlan}
-                                                onViewTable={(id) => { if (id) setForm(prev => ({ ...prev, selectedPlanId: id })); setShowInsuranceTable(true); }}
-                                                savingMode={savingMode} setSavingMode={setSavingMode}
-                                                returnMode={returnMode} setReturnMode={setReturnMode}
-                                                allocations={allocations} addAllocation={addAllocation} removeAllocation={removeAllocation} updateAllocation={updateAllocation}
-                                                onCalculate={() => {
-                                                    setIsSidebarOpen(false); setIsSummaryOpen(false);
-                                                    setShowInsuranceTable(false); setShowProjectedModal(false); setShowTargetModal(false); setShowExpenseModal(false); setShowMonteCarloDetails(false);
-                                                    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 550);
-                                                }}
-                                                isEmbedded={true}
-                                            />
-                                        </div>
+                                    <div className="max-w-2xl xl:max-w-none mt-10">
+                                        <RetirementInputSection
+                                            user={user} form={form} handleChange={handleChange} changeBy={changeBy}
+                                            gender={gender} setGender={setGender}
+                                            addInsurancePlan={addInsurancePlan} removeInsurancePlan={removeInsurancePlan} updateInsurancePlan={updateInsurancePlan}
+                                            onViewTable={(id) => { if (id) setForm(prev => ({ ...prev, selectedPlanId: id })); setShowInsuranceTable(true); }}
+                                            savingMode={savingMode} setSavingMode={setSavingMode}
+                                            returnMode={returnMode} setReturnMode={setReturnMode}
+                                            allocations={allocations} addAllocation={addAllocation} removeAllocation={removeAllocation} updateAllocation={updateAllocation}
+                                            onCalculate={() => {
+                                                setIsSidebarOpen(false); setIsSummaryOpen(false);
+                                                setShowInsuranceTable(false); setShowProjectedModal(false); setShowTargetModal(false); setShowExpenseModal(false); setShowMonteCarloDetails(false);
+                                                setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 550);
+                                            }}
+                                            isEmbedded={true}
+                                        />
                                     </div>
                                 </div>
                             </div>
